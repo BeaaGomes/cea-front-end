@@ -29,18 +29,10 @@
 </body>
 
 <script>
-    test()
-
-    function test() {
-        $.ajax({
-            method: "GET",
-            url: `http://localhost:8000/api/products`,
-            headers: {
-                "Authorization": "Bearer 7|ZUYZc3CtN1Re1cZAr5uNbBhsCpdSpvBcpnCj6w2x"
-            },
-            success: function(response){
-                console.log(response)
-            }
+    products = []
+    function fetchProducts() {
+        makeRequest("GET", "products", function(response){
+            products = response;
         })
     }
 </script>
