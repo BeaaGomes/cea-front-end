@@ -23,14 +23,14 @@
         <a href="index.html">Sair</a>
     </div>
     <div class="main d-flex justify-content-center">
-        <form class="card">
+        <div class="card">
             <label for="email">E-mail</label><br>
             <input type="email" id="email" name="email" placeholder="joao@gmail.com"><br>
             <button class="btn btn-success" onclick="onClickChangeEmailBtn()">Alterar</button>
             <label for="password" class="mt-4">Senha</label><br>
             <input type="password" id="password" name="password"><br>
             <button class="btn btn-success" onclick="onClickChangePasswordBtn()">Alterar</button>
-        </form>
+        </div>
     </div>
 </body>
 
@@ -40,15 +40,24 @@
 
 
     function onClickChangeEmailBtn() {
+        const email = $("#email").val()
         data = {
-            email: $("#email").val()
+            email
         }
+        sessionStorage.setItem("email", email);
+
         makeRequest("put", "user-email", function() {
+
             alert("Email atualizado com sucesso!")
         }, data)
     }
 
     function onClickChangePasswordBtn() {
+        const password = $("#password").val()
+        data = {
+            password
+        }
+        sessionStorage.setItem("password", password);
         data = {
             password: $("#password").val()
         }
