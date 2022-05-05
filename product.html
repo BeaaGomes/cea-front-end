@@ -13,6 +13,8 @@
     <div class="sidebar">
         <a href="home.html">Home</a>
         <a href="my-products.html">Meus produtos</a>
+        <a href="create-product.html">Criar produto</a>
+        <a href="my-info.html">Meus dados</a>
         <a href="index.html">Sair</a>
     </div>
 
@@ -29,6 +31,7 @@
     </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="request.js"></script>
+    <script src="utils.js"></script>
 </body>
 
 <script>
@@ -47,7 +50,7 @@
     }
 
     function displayProduct() {
-        $("#product_image").attr("src", product.image);
+        $("#product_image").attr("src", fullImagePath(product.image));
         $("#product_name").append(product.name)
         $("#product_description").append(product.description)
         $("#product_price").append(product.price)
