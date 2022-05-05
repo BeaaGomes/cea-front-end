@@ -20,11 +20,13 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Preço</th>
                     <th scope="col">Imagem</th>
                     <th scope="col">Excluir</th>
+
                 </tr>
             </thead>
             <tbody id="products">
@@ -49,6 +51,7 @@
     }
 
     function loadTable() {
+        $("#products").empty()
         for (i = 0; i < products.length; i++) {
             loadRow(products[i])
 
@@ -58,15 +61,46 @@
     function loadRow(product) {
         $("#products").append(`
                 <tr>
-                    <td>${product.name}</td>
-                    <td>${product.description}</td>
-                    <td>${product.price}</td>
+                    <td>${product.id}</td>
+                    <td onclick="onClickCell(this, ${product.id}, 'name')">${product.name}</td>
+                    <td onclick="onClickCell(this, ${product.id}, 'description')">${product.description}</td>
+                    <td onclick="onClickCell(this, ${product.id}, 'price')">${product.price}</td>
                     <td><img src="${product.image}" style="width: 80px;"></td>
-                    <td><button class="btn btn-danger">X</button></td>
+                    <td onclick="onClickDeleteButton(${product.id})"><button class="btn btn-danger">X</button></td>
                 </tr>
         `)
 
     }
+
+    function save(product_id, field, new_value) {
+        const data = {
+            new_value: new_value
+        }
+        makeRequest("put", `product-${field}/${product_id}`, null, data)
+    }
+
+    function onClickCell(element, product_id, field) {
+        if (element.innerHTML.startsWith("<input")) return
+        element.innerHTML = `<input onfocusout="onFocusOutCell(this, ${product_id}, '${field}',)" type="text" value="${element.innerHTML}">`
+
+    }
+
+    function onFocusOutCell(element, product_id, field) {
+        let new_value = element.value
+        element.outerHTML = new_value
+        save(product_id, field, new_value)
+
+    }
+
+    function onClickDeleteButton(product_id) {
+        makeRequest("delete", `product/${product_id}`, function() {
+            alert("Produto deletado!")
+            fetchProducts()
+        })
+
+    }
 </script>
+
+</html>
 
 </html>
