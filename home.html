@@ -13,10 +13,9 @@
 
 <body>
     <div class="sidebar">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
+        <a href="home.html">Home</a>
+        <a href="#">Meus produtos</a>
+        <a href="#clients">Sair</a>
     </div>
 
     <div class="main">
@@ -76,10 +75,12 @@
     function displayProduct(product) {
         $("#products").append(`
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <img class="card-img-top" src="${product.image}" alt="Card image cap">
-                    <h5 class="card-title">${product.name}</h5>
-                </div>
+                <a href="product.html?${product.id}">
+                    <div class="card-body">
+                        <img class="card-img-top" src="${product.image}" alt="Card image cap">
+                        <h5 class="card-title">${product.name}</h5>
+                    </div>
+                </a>
             </div>
         `)
     }
