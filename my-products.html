@@ -68,7 +68,12 @@
                     <td onclick="onClickCell(this, ${product.id}, 'name')">${product.name}</td>
                     <td onclick="onClickCell(this, ${product.id}, 'description')">${product.description}</td>
                     <td onclick="onClickCell(this, ${product.id}, 'price')">${product.price}</td>
-                    <td><img src="${fullImagePath(product.image)}" style="width: 80px;"></td>
+                    <td>
+                        <img src="${fullImagePath(product.image)}" style="width: 80px;">
+                        <form id="image_edit_${product.id}">    
+                            <input type="file" accept="image/png, image/jpeg" name="new_value" onchange="onChangeImage(this, ${product.id})">
+                        </form>
+                    </td>
                     <td onclick="onClickDeleteButton(${product.id})"><button class="btn btn-danger">X</button></td>
                 </tr>
         `)
@@ -92,7 +97,13 @@
         let new_value = element.value
         element.outerHTML = new_value
         save(product_id, field, new_value)
+    }
 
+    function onChangeImage(element, product_id) {
+        let data = new FormData($("#image_edit_" + product_id)[0]);
+        makeRequest("post", `product-image/${product_id}`, function() {
+            fetchProducts()
+        }, data, true)
     }
 
     function onClickDeleteButton(product_id) {
