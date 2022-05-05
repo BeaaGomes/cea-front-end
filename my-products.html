@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Meus produtos</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="home.html">Home</a>
+        <a href="my-products.html">Meus produtos</a>
+        <a href="#clients">Sair</a>
+    </div>
+    <div class="main">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Imagem</th>
+                    <th scope="col">Excluir</th>
+                </tr>
+            </thead>
+            <tbody id="products">
+
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="request.js"></script>
+</body>
+
+<script>
+    let products = [];
+    fetchProducts()
+
+
+    function fetchProducts() {
+        makeRequest("GET", `products`, function(response) {
+            products = response
+            loadTable()
+        })
+    }
+
+    function loadTable() {
+        for (i = 0; i < products.length; i++) {
+            loadRow(products[i])
+
+        }
+    }
+
+    function loadRow(product) {
+        $("#products").append(`
+                <tr>
+                    <td>${product.name}</td>
+                    <td>${product.description}</td>
+                    <td>${product.price}</td>
+                    <td><img src="${product.image}" style="width: 80px;"></td>
+                    <td><button class="btn btn-danger">X</button></td>
+                </tr>
+        `)
+
+    }
+</script>
+
+</html>
