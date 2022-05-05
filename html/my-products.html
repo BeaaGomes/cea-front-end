@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/style.css">
+
     <title>Meus produtos</title>
 </head>
 
@@ -19,22 +20,29 @@
         <a href="index.html">Sair</a>
     </div>
     <div class="main">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">Imagem</th>
-                    <th scope="col">Excluir</th>
-
-                </tr>
-            </thead>
-            <tbody id="products">
-
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col text-center">
+                <p class="m-4" style="font-size: 20px">Clique no dado que deseja editar, altere e pressione tab:)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Imagem</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="../scripts/utils.js"></script>
@@ -44,8 +52,8 @@
     let products = [];
     fetchProducts()
 
-
     function fetchProducts() {
+
         makeRequest("GET", `products`, function(response) {
             products = response
             loadTable()
@@ -70,7 +78,7 @@
                     <td>
                         <img src="${fullImagePath(product.image)}" style="width: 80px;">
                         <form id="image_edit_${product.id}">    
-                            <input type="file" accept="image/png, image/jpeg" name="new_value" onchange="onChangeImage(this, ${product.id})">
+                            <input class="hidden mt-2" type="file" accept="image/png, image/jpeg" name="new_value" onchange="onChangeImage(this, ${product.id})">
                         </form>
                     </td>
                     <td onclick="onClickDeleteButton(${product.id})"><button class="btn btn-danger">X</button></td>

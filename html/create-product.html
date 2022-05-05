@@ -20,19 +20,20 @@
         <a href="my-info.html">Meus dados</a>
         <a href="index.html">Sair</a>
     </div>
-    <div class="main">
-        <h1>CADASTRO DE PRODUTO</h1>
-        <form id="create_product_form">
-            <label for="name">Nome</label><br>
-            <input type="text" id="name" name="name"><br>
-            <label for="description">Descrição do produto</label><br>
-            <input type="text" id="description" name="description"><br>
-            <label for="price">Preço</label><br>
-            <input type="number" min="1" step="0.01" id="price" name="price" placeholder="R$ 50,00"><br>
-            <label for="image">Imagem do produto</label><br>
-            <input type="file" id="image" name="image" accept="image/png, image/jpeg">
-        </form>
-        <button onclick="createProduct()">Enviar</button>
+    <div class="main d-flex justify-content-center">
+        <div class="card">
+            <form id="create_product_form">
+                <label for="name">Nome do produto</label><br>
+                <input type="text" id="name" name="name" class="form-control"><br>
+                <label for="description">Descrição do produto</label><br>
+                <textarea id="description" name="description" rows="4" class="form-control" style="height: 200px;"></textarea><br>
+                <label for="price">Preço</label><br>
+                <input type="number" min="1" step="0.01" id="price" name="price" placeholder="R$ 50,00" class="form-control"><br>
+                <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+            </form>
+            <button onclick="createProduct()" class="btn btn-success mt-3">Enviar</button>
+        </div>
+
     </div>
 </body>
 <script>

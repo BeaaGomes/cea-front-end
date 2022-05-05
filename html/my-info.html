@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/style.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="../scripts/utils.js"></script>
+
+    <script src="request.js"></script>
     <title>Meus dados</title>
 </head>
 
@@ -20,15 +21,16 @@
         <a href="my-info.html">Meus dados</a>
         <a href="index.html">Sair</a>
     </div>
-    <div class="main">
-        <h1>Meus dados</h1>
-        <label for="email">E-mail</label><br>
-        <input type="email" id="email" name="email" placeholder="joao@gmail.com"><br>
-        <button class="btn btn-danger" onclick="onClickChangeEmailBtn()">change</button>
-        <label for="password">Senha</label><br>
-        <input type="password" id="password" name="password"><br>
-        <button class="btn btn-danger" onclick="onClickChangePasswordBtn()">change</button>
-    </div>>
+    <div class="main d-flex justify-content-center">
+        <form class="card">
+            <label for="email">E-mail</label><br>
+            <input type="email" id="email" name="email" placeholder="joao@gmail.com"><br>
+            <button class="btn btn-success" onclick="onClickChangeEmailBtn()">Alterar</button>
+            <label for="password" class="mt-4">Senha</label><br>
+            <input type="password" id="password" name="password"><br>
+            <button class="btn btn-success" onclick="onClickChangePasswordBtn()">Alterar</button>
+        </form>
+    </div>
 </body>
 
 <script>
