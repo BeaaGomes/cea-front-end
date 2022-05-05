@@ -20,7 +20,7 @@
             <input type="text" id="name" name="name" placeholder="Maria Joaquina"><br>
             <label for="email">E-mail</label><br>
             <input type="email" id="email" name="email" placeholder="joao@gmail.com"><br>
-            <label for="password">E-mail</label><br>
+            <label for="password">Senha</label><br>
             <input type="password" id="password" name="password"><br>
         </form>
         <button onclick="createUser()">Enviar</button>
@@ -29,12 +29,14 @@
 <script>
     function createUser() {
         data = {
-            name: $("#email").val(),
+            name: $("#name").val(),
             email: $("#email").val(),
             password: $("#password").val()
         }
-        makeRequest("post", "user", null, data)
-        window.location.href = "home.html";
+        makeRequest("post", "user", function() {
+            window.location.href = "index.html"
+        }, data)
+
     }
 </script>
 
