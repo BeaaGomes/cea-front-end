@@ -4,6 +4,10 @@ function makeRequest(method, path, success, data = null) {
     $.ajax({
         method,
         url: `http://localhost:8000/api/${path}`,
+        processData: false,
+        contentType: false,
+        cache: false,
+        enctype: 'multipart/form-data',
         headers: {
             "Authorization": `Bearer ${token}`
         },
